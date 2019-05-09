@@ -62,9 +62,20 @@ public class CustomView extends View {
 
         Path path = new Path();                     // 创建Path
 
-        path.lineTo(200, 200);                      // lineTo
-        path.lineTo(200,0);
+//        path.lineTo(200, 200);                      // lineTo
+//        path.lineTo(200,0);
 
-        canvas.drawPath(path, mPaint);
+//        path.close();                               // close
+//
+//        canvas.drawPath(path, mPaint);              // 绘制Path
+
+
+        path.addRect(-200,-200,200,200, Path.Direction.CW);  //CW顺时针,CCW逆时针
+//        path.addRect(-200,-200,200,200, Path.Direction.CCW);  //CW顺时针,CCW逆时针
+
+        path.setLastPoint(-300,300);                // <-- 重置最后一个点的位置  顺时针矩形四个点顺序为A-B-C-D 逆时针顺序为A-D-C-B 因此顺时针最后一个点为D,逆时针最后一个点为B
+
+        canvas.drawPath(path,mPaint);
+        
     }
 }
