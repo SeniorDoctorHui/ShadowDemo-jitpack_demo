@@ -36,3 +36,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+
+task makeJar(type: Copy) {
+    //删除已经存在的jar包，如果有的话
+    from('build/intermediates/bundles/debug/')//从该目录下加载要打包的文件，注意文件夹名称有可能为default，也可能是release，自己看一下
+    into('build/libs/')//jar包的保存目录
+    include('classes.jar')//设置过滤，只打包classes文件
+    rename('classes.jar', 'myutil.jar')//重命名，SlidingMenuHbh.jar 名字自己随便起
+}
+makeJar.dependsOn(build)
+
+

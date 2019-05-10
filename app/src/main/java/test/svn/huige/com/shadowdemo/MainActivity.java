@@ -25,4 +25,8 @@ public class MainActivity extends AppCompatActivity {
     public void openBezier(View view) {
         startActivity(new Intent(this,BezierActivity.class));
     }
+
+    public void openBezier2(View view) {
+        startActivity(new Intent(this,Bezier2Activity.class));
+    }
 }
