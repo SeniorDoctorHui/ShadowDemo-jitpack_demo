@@ -5,9 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.gcssloop.view.utils.CanvasAidUtils;
 
 
 /**
@@ -57,8 +60,15 @@ public class CustomView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.translate(mWidth / 2, mHeight / 2);  // 移动坐标系到屏幕中心(宽高数据在onSizeChanged中获取)
+//        canvas.scale(1,-1);
+
+        // 绘制坐标系
+        CanvasAidUtils.set2DAxisLength(500, 500, 600, 600);
+        CanvasAidUtils.draw2DCoordinateSpace(canvas);
+
+                              // <-- 注意 翻转y坐标轴
         //相对于上一个参考点移动
-        canvas.translate(100,100);
+//        canvas.translate(100,100);
 
         Path path = new Path();                     // 创建Path
 
@@ -70,11 +80,20 @@ public class CustomView extends View {
 //        canvas.drawPath(path, mPaint);              // 绘制Path
 
 
+       // path.arcTo(oval,0,270,false);
+
+
         path.addRect(-200,-200,200,200, Path.Direction.CW);  //CW顺时针,CCW逆时针
 //        path.addRect(-200,-200,200,200, Path.Direction.CCW);  //CW顺时针,CCW逆时针
 
-        path.setLastPoint(-300,300);                // <-- 重置最后一个点的位置  顺时针矩形四个点顺序为A-B-C-D 逆时针顺序为A-D-C-B 因此顺时针最后一个点为D,逆时针最后一个点为B
+//        path.setLastPoint(-300,300);                // <-- 重置最后一个点的位置  顺时针矩形四个点顺序为A-B-C-D 逆时针顺序为A-D-C-B 因此顺时针最后一个点为D,逆时针最后一个点为B
 
+
+        RectF oval = new RectF(0,0,300,300);
+
+//        path.arcTo(oval,0,270);
+        path.arcTo(oval,0,270, false);  //和上面一句等价
+//        path.addArc(oval,0, 360);
         canvas.drawPath(path,mPaint);
         
     }

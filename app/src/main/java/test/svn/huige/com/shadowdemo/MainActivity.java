@@ -21,4 +21,8 @@ public class MainActivity extends AppCompatActivity {
     public void openShadow(View view) {
         startActivity(new Intent(this,ShadowActivity.class));
     }
+
+    public void openBezier(View view) {
+        startActivity(new Intent(this,BezierActivity.class));
+    }
 }
