@@ -60,13 +60,14 @@ public class CustomView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.translate(mWidth / 2, mHeight / 2);  // 移动坐标系到屏幕中心(宽高数据在onSizeChanged中获取)
+        // <-- 注意 翻转y坐标轴
 //        canvas.scale(1,-1);
 
         // 绘制坐标系
         CanvasAidUtils.set2DAxisLength(500, 500, 600, 600);
         CanvasAidUtils.draw2DCoordinateSpace(canvas);
 
-                              // <-- 注意 翻转y坐标轴
+
         //相对于上一个参考点移动
 //        canvas.translate(100,100);
 
